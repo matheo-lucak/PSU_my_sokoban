@@ -37,7 +37,7 @@ vector2i_t get_dim(char *map)
     vector2i_t dim;
 
     dim.y = get_height(map);
-    dim.x = get_width(map);
+    dim.x = get_max_width(map, dim.y);
     return (dim);
 }
 

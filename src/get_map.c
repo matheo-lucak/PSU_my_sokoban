@@ -45,6 +45,25 @@ int get_height(char const *map)
     return (j);
 }
 
+int get_max_width(char const *map, int height)
+{
+    int j = -1;
+    int i = 0;
+    int tmp = 0;
+    int width = 0;
+
+    while (i < height && map[++j] != '\0') {
+        if (map[j] == '\n') {
+            tmp = 0;
+            i++;
+        }
+        if (tmp > width)
+            width = tmp;
+        tmp++;
+    }
+    return (width);
+}
+
 char *read_map(char const *filepath, long long size)
 {
     char *buffer = malloc(size + 1);
