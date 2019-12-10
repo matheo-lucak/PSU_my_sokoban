@@ -30,11 +30,11 @@ void move_event(char **map_arr, int key)
     }
 }
 
-void key_event(char **map_arr, int key, int *play)
+void key_event(char **map_arr, int key, int *restart)
 {
     if (key == KEY_UP || key == KEY_DOWN ||
         key == KEY_LEFT || key == KEY_RIGHT)
         move_event(map_arr, key);
     if (key == ' ')
-        *play = 0;
+        *restart = 2;
 }

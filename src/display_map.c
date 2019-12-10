@@ -8,73 +8,35 @@
 #include "sokoban.h"
 #include "my.h"
 
-char **map_to_lines(char const *map, int height)
-{
-    char **map_arr = malloc(sizeof(char *) * (height + 1));
-    int i = -1;
-    int j = 0;
-
-    while (++i < height) {
-        map_arr[i] = my_strndup(map + j, get_width(map + j) + 1);
-        j += get_width(map + j) + 1;
-    }
-    map_arr[height] = NULL;
-    return (map_arr);
-}
-
-void free_map_arr(char **map_arr)
+int display(char **map_arr, vector2i_t *o_arr, vector2i_t dim, int restart)
 {
     int i = -1;
 
-    while (map_arr[++i] != NULL)
-        free(map_arr[i]);
-}
-
-void reset_o(char **map_arr, vector2i_t *o_arr)
-{
-    vector2i_t pos = o_arr[0];
-    int i = 0;
-
-    while (pos.x != 0 && pos.y != 0) {
-        if (map_arr[pos.y][pos.x] == ' ')
-            map_arr[pos.y][pos.x] = 'O';
-        pos = o_arr[i];
-        i++;
+    while (restart != 1 && restart != 0 && restart != 2) {
+        clear();
+        check_o(map_arr, o_arr);
+        if (check_win(map_arr, o_arr))
+            restart = 0;
+        if (check_box_blocked(map_arr, dim))
+            restart = 1;
+        while (++i < dim.y)
+            mvprintw(LINES/2 - dim.y/2 + i, COLS/2 - dim.x/2, map_arr[i]);
+        i = -1;
+        key_event(map_arr, getch(), &restart);
+        refresh();
     }
+    return (restart);
 }
 
-void display(int width, int height, char **map_arr, vector2i_t *o_arr)
+int start_disp(char **map_arr, vector2i_t *o_arr, vector2i_t dim, int restart)
 {
-    int play = 1;
     int i = -1;
 
     initscr();
     curs_set(FALSE);
     keypad(stdscr, TRUE);
-    while (play) {
-        clear();
-        reset_o(map_arr, o_arr);
-        while (++i < height)
-            mvprintw(LINES/2 - height/2 + i, COLS/2 - width/2, map_arr[i]);
-        i = -1;
-        key_event(map_arr, getch(), &play);
-        refresh();
-    }
+    restart = display(map_arr, o_arr, dim, restart);
     curs_set(TRUE);
     endwin();
-}
-
-int main (int ac, char **av)
-{
-    if (ac != 2)
-        return (84);
-    long long size = get_byte_size(av[1]);
-    char *map = read_map(av[1], size);
-    int width = get_width(map);
-    int height = get_height(map);
-    char **map_arr = map_to_lines(map, height);
-    vector2i_t *o_arr = find_o(map_arr);
-
-    display(width, height, map_arr, o_arr);
-    return (0);
+    return (restart);
 }

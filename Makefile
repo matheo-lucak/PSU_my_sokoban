@@ -12,6 +12,8 @@ SRC			=	src/get_map.c				\
 				src/move_player.c			\
 				src/get_pos.c				\
 				src/key_event.c				\
+				src/launch_game.c			\
+				src/check_obj.c				\
 
 OBJ			=	$(SRC:.c=.o)
 
@@ -25,10 +27,10 @@ LDLIBS		=	-lmy -lncurses
 
 LIB			=	./lib/libmy.a
 
+all:	$(NAME)
+
 $(NAME):	 $(LIB) $(OBJ)
 	$(CC) $(OBJ) -o $(NAME) $(CPPFLAGS) $(LDFLAGS) $(LDLIBS)
-
-all:	$(NAME)
 
 debug:	fclean $(LIB) $(OBJ)
 	$(CC) $(SRC) -o $(NAME) $(CPPFLAGS) $(LDFLAGS) $(LDLIBS) -W -Wall -Wextra -g
