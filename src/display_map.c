@@ -32,12 +32,11 @@ void disp_game(char **map_arr, vector2i_t *o_arr, vector2i_t dim, int *restart)
     i = -1;
     key_event(map_arr, getch(), restart);
     refresh();
-
 }
 
 int display(char **map_arr, vector2i_t *o_arr, vector2i_t dim, int restart)
 {
-    while (restart != 1 && restart != 0 && restart != 2) {
+    while (restart < 0 || restart > 3) {
         if (LINES < dim.y || COLS < dim.x)
             disp_resize();
         else

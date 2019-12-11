@@ -44,5 +44,6 @@ void check_o(char **map_arr, vector2i_t *o_arr);
 int check_box_blocked(char **map_arr, vector2i_t dim);
 
 int start_disp(char **map_arr, vector2i_t *o_arr, vector2i_t dim, int restart);
+int init_game(char *src);
 
 #endif /* !LAUNCHER_H_ */

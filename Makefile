@@ -7,13 +7,14 @@
 
 CC			=	gcc
 
-SRC			=	src/get_map.c				\
-				src/display_map.c			\
-				src/move_player.c			\
-				src/get_pos.c				\
-				src/key_event.c				\
-				src/launch_game.c			\
-				src/check_obj.c				\
+SRC			=	src/get_map.c		\
+				src/display_map.c	\
+				src/move_player.c	\
+				src/get_pos.c		\
+				src/key_event.c		\
+				src/launch_game.c	\
+				src/check_obj.c		\
+				src/main.c			\
 
 OBJ			=	$(SRC:.c=.o)
 

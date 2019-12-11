@@ -57,13 +57,3 @@ int init_game(char *src)
         restart = init_game(src);
     return (restart);
 }
-
-int main (int ac, char **av)
-{
-    int game_status = 1;
-    if (ac != 2)
-        return (84);
-    else
-        game_status = init_game(av[1]);
-    return (game_status);
-}
