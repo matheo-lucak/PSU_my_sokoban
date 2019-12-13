@@ -29,8 +29,9 @@ void disp_game(char **map_arr, vector2i_t *o_arr, vector2i_t dim, int *restart)
         *restart = 1;
     while (++i < dim.y)
         mvprintw(LINES/2 - dim.y/2 + i, COLS/2 - dim.x/2, map_arr[i]);
+    if (*restart != 0)
+        key_event(map_arr, getch(), restart);
     i = -1;
-    key_event(map_arr, getch(), restart);
     refresh();
 }
 
