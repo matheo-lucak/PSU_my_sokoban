@@ -47,12 +47,12 @@ vector2i_t get_dim(char *map)
 
 int init_game(char *src)
 {
-    char *map = read_map(src); 
+    char *map = read_map(src);
     vector2i_t dim;
     char **map_arr;
     vector2i_t *o_arr;
     int restart = -1;
-    
+
     if (map == NULL)
         return (84);
     dim = get_dim(map);
