@@ -22,6 +22,7 @@ long long get_byte_size(char const *filepath)
         return (-1);
     if (stat(filepath, stat_buf) == 0) {
         size = stat_buf->st_size;
+        printf("%lld SIZE\n", size);
     }
     free(stat_buf);
     return (size);

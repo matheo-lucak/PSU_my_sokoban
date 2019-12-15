@@ -40,7 +40,7 @@ int main(int ac, char **av, char **env)
         disp_h();
         return (0);
     }
-    if (ac != 2 || error(env) == 84)
+    if (ac != 2)
         return (84);
     else
         game_status = init_game(av[1]);
