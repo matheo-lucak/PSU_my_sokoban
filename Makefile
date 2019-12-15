@@ -31,21 +31,21 @@ LIB			=	./lib/libmy.a
 all:	$(NAME)
 
 $(NAME):	 $(LIB) $(OBJ)
-	$(CC) $(OBJ) -o $(NAME) $(CPPFLAGS) $(LDFLAGS) $(LDLIBS)
+				$(CC) $(OBJ) -o $(NAME) $(CPPFLAGS) $(LDFLAGS) $(LDLIBS)
 
 debug:	fclean $(LIB) $(OBJ)
-	$(CC) $(SRC) -o $(NAME) $(CPPFLAGS) $(LDFLAGS) $(LDLIBS) -W -Wall -Wextra -g
+				$(CC) $(SRC) -o $(NAME) $(CPPFLAGS) $(LDFLAGS) $(LDLIBS) -W -Wall -Wextra -g
 
 $(LIB):
-	make -C ./lib/my/
+				make -C ./lib/my/
 
 clean:
-	rm -f $(OBJ)
-	make clean -C ./lib/my/
+				rm -f $(OBJ)
+				make clean -C ./lib/my/
 
 fclean: clean
-	rm -f $(NAME)
-	make fclean -C ./lib/my
+				rm -f $(NAME)
+				make fclean -C ./lib/my
 
 re:	fclean all
 

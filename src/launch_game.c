@@ -14,9 +14,13 @@ char **map_to_lines(char const *map, int height)
     int i = -1;
     int j = 0;
 
+    if (map_arr == NULL)
+        return (NULL);
     while (++i < height) {
         map_arr[i] = my_strndup(map + j, get_width(map + j) + 1);
         j += get_width(map + j) + 1;
+        if (map_arr[i] == NULL)
+            return (NULL);
     }
     map_arr[height] = NULL;
     return (map_arr);
@@ -43,13 +47,19 @@ vector2i_t get_dim(char *map)
 
 int init_game(char *src)
 {
-    long long size = get_byte_size(src);
-    char *map = read_map(src, size);
-    vector2i_t dim = get_dim(map);
-    char **map_arr = map_to_lines(map, dim.y);
-    vector2i_t *o_arr = find_o(map_arr);
+    char *map = read_map(src); 
+    vector2i_t dim;
+    char **map_arr;
+    vector2i_t *o_arr;
     int restart = -1;
-
+    
+    if (map == NULL)
+        return (84);
+    dim = get_dim(map);
+    map_arr = map_to_lines(map, dim.y);
+    if (map_arr == NULL)
+        return (84);
+    o_arr = find_o(map_arr);
     check_box_blocked(map_arr, dim);
     restart = start_disp(map_arr, o_arr, dim, restart);
     free_map(map, map_arr, o_arr);

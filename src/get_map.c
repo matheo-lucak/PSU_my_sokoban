@@ -18,6 +18,8 @@ long long get_byte_size(char const *filepath)
     struct stat *stat_buf = malloc(sizeof(struct stat));
     long long size;
 
+    if (stat_buf == NULL)
+        return (-1);
     if (stat(filepath, stat_buf) == 0) {
         size = stat_buf->st_size;
     }
@@ -64,11 +66,16 @@ int get_max_width(char const *map, int height)
     return (width);
 }
 
-char *read_map(char const *filepath, long long size)
+char *read_map(char const *filepath)
 {
-    char *buffer = malloc(size + 1);
+    long long size = get_byte_size(filepath);
+    char *buffer = NULL;
     int fd = 0;
-
+    if (size == -1)
+        return (NULL);
+    buffer = malloc(size + 1);
+    if (buffer == NULL)
+        return (NULL);
     fd = open(filepath, O_RDONLY);
     if (fd == -1)
         return (NULL);

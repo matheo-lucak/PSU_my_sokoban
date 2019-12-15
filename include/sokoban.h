@@ -27,11 +27,12 @@ void move_down(char **map_arr, vector2i_t pos);
 void move_left(char **map_arr, vector2i_t pos);
 void move_right(char **map_arr, vector2i_t pos);
 
+vector2i_t get_dim(char *map);
 long long get_byte_size(char const *filepath);
 int get_width(char const *map);
 int get_max_width(char const *map, int height);
 int get_height(char const *map);
-char *read_map(char const *filepath, long long size);
+char *read_map(char const *filepath);
 char **map_to_lines(char const *map, int height);
 
 int count_o(char **map_arr);
