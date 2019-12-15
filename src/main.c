@@ -32,7 +32,7 @@ int error(char **env)
     return (84);
 }
 
-int main(int ac, char **av, char **env)
+int main(int ac, char **av)
 {
     int game_status = 1;
 
