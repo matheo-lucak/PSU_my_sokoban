@@ -19,19 +19,6 @@ void disp_h(void)
     my_putstr("for boxes and ‘O’ for storage locations.\n");
 }
 
-int error(char **env)
-{
-    char *display = "DISPLAY";
-    int i = -1;
-
-    if (env[0] == NULL)
-        return (84);
-    while (env[++i] != NULL)
-        if (my_strcmp(env[i], display) == 0)
-            return (0);
-    return (84);
-}
-
 int main(int ac, char **av)
 {
     int game_status = 1;
