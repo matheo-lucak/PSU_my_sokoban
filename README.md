@@ -5,6 +5,6 @@ Compile with :
 $make
 
 USAGE :
-./my_sokoban [map]
+`./my_sokoban [map]`
 
 use -h flag for help
